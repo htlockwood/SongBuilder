@@ -10,7 +10,7 @@ use Libraries.Containers.Array
 use Libraries.Robots.Lego.GyroSensor
 use Libraries.Compute.Math
 
-//instandceate actions
+//INSTANDCEATE actions
 Motor motor
 ColorSensor colorSensor
 Utility utility
@@ -121,9 +121,29 @@ utility:DelayMilliseconds(1000)
 motor:SetSpeed("A",6)
 // map the RGB intergers to a pitch and set of range of +/- 2 to ajust for small variation
 //these are a lot of elseif's to evaulate for 30 colors
-if ired>253 and ired<256 and igreen>253 and igreen<256 and iblue>253 and iblue<256// 0 white
+if ired>56 and ired<61 and igreen>54 and igreen<68 and iblue>35 and iblue<40// WHITE REST
 utility:DelayMilliseconds(duration)
-
+elseif ired>30 and ired<38 and igreen>26 and igreen<33 and iblue>14 and iblue<20// wood rest
+utility:DelayMilliseconds(duration)
+elseif ired>45 and ired<60 and igreen>10 and igreen<19 and iblue>5 and iblue<10// RED  C5
+    sound:PlayTone(C5,duration)
+elseif ired>58 and ired<68 and igreen>62 and igreen<71 and iblue>22 and iblue<27// GOLD  D5
+    sound:PlayTone(D5,duration)
+elseif ired>5 and ired<11 and igreen>18 and igreen<27 and iblue>19 and iblue<25// LTBLUE  E5
+    sound:PlayTone(E5,duration)
+elseif ired>40 and ired<51 and igreen>22 and igreen<29 and iblue>3 and iblue<9// Yellow  F5
+    sound:PlayTone(F5,duration)
+elseif ired>3 and ired<9 and igreen>7 and igreen<13 and iblue>6 and iblue<12// BLUE  G5
+    sound:PlayTone(G5,duration)
+elseif ired>44 and ired<53 and igreen>61 and igreen<75 and iblue>30 and iblue<40// Silver  A5
+    sound:PlayTone(A5,duration)
+elseif ired>32 and ired<39 and igreen>16 and igreen<22 and iblue>8 and iblue<14// PINK  B5
+    sound:PlayTone(B5,duration)
+elseif ired>4 and ired<9 and igreen>17 and igreen<27 and iblue>3 and iblue<8// GREEN  C6
+    sound:PlayTone(C6,duration)
+elseif ired>3 and ired<10 and igreen>7 and igreen<16 and iblue>2 and iblue<8// BLACK  C6
+motor:Stop("B") 
+motor:Stop("C") 
 end
 utility:DelayMilliseconds(duration)
 end
