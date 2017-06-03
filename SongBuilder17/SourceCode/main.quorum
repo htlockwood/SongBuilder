@@ -1,4 +1,4 @@
-//Song Builder
+//Song Builder 2017 using enaimle painted bricks 
 use Libraries.Robots.Lego.Motor
 use Libraries.Robots.Lego.ColorSensor
 use Libraries.Robots.Lego.Utility
@@ -11,7 +11,7 @@ use Libraries.Containers.Array
 use Libraries.Robots.Lego.GyroSensor
 use Libraries.Compute.Math
 
-//INSTANDCEATE actions
+//instantiate actions
 Motor motor
 ColorSensor colorSensor
 Utility utility
@@ -24,8 +24,8 @@ GyroSensor gyroSensor
 Math math
 //set sensor ports 
 colorSensor:SetPort(1)
-ultrasonicSensor:SetPort(2)
-gyroSensor:SetPort(3)
+ultrasonicSensor:SetPort(2) //not used commented out below
+gyroSensor:SetPort(3) //not used
 touchSensor:SetPort(4)
 
 //Create varibles for the music notation
@@ -104,6 +104,7 @@ repeat until touchSensor:IsPressed()// or use this one to stop by pressing the t
 
 // make an array and then get the color data form the color sensor and make the numbers into an integer 255 times larger than the 0.0 - 1.0 range
 //This simulates the standard RGB 255,255,255 color palete often seen in color mixing software.
+//I need to test this against the real standards to see if this a ancraged repratation. Does not matter for the program.  
 Array<number> redGreenBlueLevels = colorSensor:GetRedGreenBlueLevels()
 number red = redGreenBlueLevels:Get(0)*255 
 number green = redGreenBlueLevels:Get(1)*255
@@ -121,28 +122,28 @@ screen:OutputLarge("Blue: " + iblue, 5)
 
 motor:SetSpeed("A",6)
 // map the RGB intergers to a pitch and set of range of +/- 2 to ajust for small variation
-//these are elseif's to evaulate for 8 colors
+//these are elseif's to evaulate for 9 colors and track color.
 if ired>59 and ired<66 and igreen>69 and igreen<80 and iblue>39 and iblue<11// WHITE REST
 utility:DelayMilliseconds(duration)
 elseif ired>24 and ired<36 and igreen>20 and igreen<29 and iblue>8 and iblue<18// wood rest
 utility:DelayMilliseconds(duration)
-elseif ired>38 and ired<60 and igreen>7 and igreen<19 and iblue>3 and iblue<11// RED  C5
+elseif ired>39 and ired<49 and igreen>9 and igreen<18 and iblue>1 and iblue<11// RED  C5
     sound:PlayTone(C5,duration)
-elseif ired>49 and ired<77 and igreen>44 and igreen<77 and iblue>18 and iblue<28// GOLD  D5
+elseif ired>54 and ired<74 and igreen>62 and igreen<74 and iblue>13 and iblue<25// GOLD  D5
     sound:PlayTone(D5,duration)
-elseif ired>5 and ired<11 and igreen>18 and igreen<29 and iblue>18 and iblue<28// LTBLUE  E5
+elseif ired>44 and ired<56 and igreen>7 and igreen<19 and iblue>8 and iblue<17// ORANGE  E5
     sound:PlayTone(E5,duration)
-elseif ired>40 and ired<57 and igreen>22 and igreen<34 and iblue>3 and iblue<9// Yellow  F5
+elseif ired>48 and ired<60 and igreen>22 and igreen<34 and iblue>2 and iblue<10// Yellow  F5
     sound:PlayTone(F5,duration)
-elseif ired>3 and ired<10 and igreen>7 and igreen<17 and iblue>5 and iblue<14// BLUE  G5
+elseif ired>2 and ired<10 and igreen>10 and igreen<17 and iblue>2 and iblue<7// BLACK  G5
     sound:PlayTone(G5,duration)
-elseif ired>39 and ired<59 and igreen>50 and igreen<86 and iblue>30 and iblue<45// Silver  A5
+elseif ired>39 and ired<51 and igreen>49 and igreen<71 and iblue>22 and iblue<34// Silver  A5
     sound:PlayTone(A5,duration)
-elseif ired>31 and ired<44 and igreen>14 and igreen<26 and iblue>8 and iblue<18// PINK  B5
+elseif ired>38 and ired<51 and igreen>11 and igreen<21 and iblue>5 and iblue<12// PINK  B5
     sound:PlayTone(B5,duration)
-elseif ired>4 and ired<14 and igreen>17 and igreen<34 and iblue>3 and iblue<10// GREEN  C6
+elseif ired>3 and ired<11 and igreen>21 and igreen<31 and iblue>1 and iblue<10// GREEN  C6
     sound:PlayTone(C6,duration)
-elseif ired>3 and ired<10 and igreen>7 and igreen<16 and iblue>2 and iblue<8// BLACK  STOP
+elseif ired>1 and ired<9 and igreen>11 and igreen<23 and iblue>10 and iblue<18// Blue  STOP
 motor:Stop("B") 
 motor:Stop("C") 
 end
