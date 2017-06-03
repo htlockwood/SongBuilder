@@ -90,14 +90,14 @@ integer s=100 // 16th Note
 
 // Set up the starting varibles and motors
 sound:SetVolume(100) 
-integer duration=200 
+integer duration=400 
 motor:SetSpeed("A",6)
 motor:SetSpeed("B",10)
 motor:SetSpeed("C",10)
 motor:RotateForward("A")
 motor:RotateForward("B")
 motor:RotateForward("C")
-utility:DelayMilliseconds(100) 
+utility:DelayMilliseconds(10) 
 // just to get the robot moving!
 //repeat until ultrasonicSensor:GetDistance() < 0.5 //use this to stop the robot when it gets to a object
 repeat until touchSensor:IsPressed()// or use this one to stop by pressing the touch sensor.
@@ -123,23 +123,23 @@ screen:OutputLarge("Blue: " + iblue, 5)
 motor:SetSpeed("A",6)
 // map the RGB intergers to a pitch and set of range of +/- 2 to ajust for small variation
 //these are elseif's to evaulate for 9 colors and track color.
-if ired>59 and ired<66 and igreen>69 and igreen<80 and iblue>39 and iblue<11// WHITE REST
+if ired>42 and ired<55 and igreen>49 and igreen<61 and iblue>32 and iblue<46// WHITE REST
 utility:DelayMilliseconds(duration)
 elseif ired>24 and ired<36 and igreen>20 and igreen<29 and iblue>8 and iblue<18// wood rest
 utility:DelayMilliseconds(duration)
-elseif ired>39 and ired<49 and igreen>9 and igreen<18 and iblue>1 and iblue<11// RED  C5
+elseif ired>39 and ired<51 and igreen>9 and igreen<18 and iblue>1 and iblue<11// RED  C5
     sound:PlayTone(C5,duration)
-elseif ired>54 and ired<74 and igreen>62 and igreen<74 and iblue>13 and iblue<25// GOLD  D5
+elseif ired>54 and ired<77 and igreen>62 and igreen<78 and iblue>13 and iblue<27// GOLD  D5
     sound:PlayTone(D5,duration)
-elseif ired>44 and ired<56 and igreen>7 and igreen<19 and iblue>8 and iblue<17// ORANGE  E5
+elseif ired>44 and ired<59 and igreen>7 and igreen<21 and iblue>5 and iblue<13// ORANGE  E5
     sound:PlayTone(E5,duration)
-elseif ired>48 and ired<60 and igreen>22 and igreen<34 and iblue>2 and iblue<10// Yellow  F5
+elseif ired>48 and ired<66 and igreen>22 and igreen<36 and iblue>2 and iblue<10// Yellow  F5
     sound:PlayTone(F5,duration)
 elseif ired>2 and ired<10 and igreen>10 and igreen<17 and iblue>2 and iblue<7// BLACK  G5
     sound:PlayTone(G5,duration)
-elseif ired>39 and ired<51 and igreen>49 and igreen<71 and iblue>22 and iblue<34// Silver  A5
+elseif ired>33 and ired<39 and igreen>53 and igreen<63 and iblue>22 and iblue<34// Silver  A5
     sound:PlayTone(A5,duration)
-elseif ired>38 and ired<51 and igreen>11 and igreen<21 and iblue>5 and iblue<12// PINK  B5
+elseif ired>38 and ired<54 and igreen>11 and igreen<21 and iblue>5 and iblue<12// PINK  B5
     sound:PlayTone(B5,duration)
 elseif ired>3 and ired<11 and igreen>21 and igreen<31 and iblue>1 and iblue<10// GREEN  C6
     sound:PlayTone(C6,duration)
@@ -148,4 +148,4 @@ motor:Stop("B")
 motor:Stop("C") 
 end
 utility:DelayMilliseconds(duration)
-end
+end //this does not end the program, it is still repeating until the touch sensor is pressed
