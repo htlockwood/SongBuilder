@@ -1,0 +1,150 @@
+//Song Builder
+use Libraries.Robots.Lego.Motor
+use Libraries.Robots.Lego.ColorSensor
+use Libraries.Robots.Lego.Utility
+use Libraries.Robots.Lego.Screen
+use Libraries.Robots.Lego.Sound
+use Libraries.Robots.Lego.Button
+use Libraries.Robots.Lego.TouchSensor
+use Libraries.Robots.Lego.UltrasonicSensor
+use Libraries.Containers.Array
+use Libraries.Robots.Lego.GyroSensor
+use Libraries.Compute.Math
+
+//INSTANDCEATE actions
+Motor motor
+ColorSensor colorSensor
+Utility utility
+Screen screen
+Sound sound
+Button button
+TouchSensor touchSensor
+UltrasonicSensor ultrasonicSensor
+GyroSensor gyroSensor
+Math math
+//set sensor ports 
+colorSensor:SetPort(1)
+ultrasonicSensor:SetPort(2)
+gyroSensor:SetPort(3)
+touchSensor:SetPort(4)
+
+//Create varibles for the music notation
+integer C3=131
+integer Db3=139
+integer D3=147
+integer Eb3=156
+integer E3=165
+integer F3=175
+integer Gb3=185
+integer G3=196
+integer Ab3=208
+integer A3=220
+integer Bb3=233
+integer B3=247
+integer C4=262
+integer Db4=277
+integer D4=294
+integer Eb4=311
+integer E4=330
+integer F4=349
+integer Gb4=370
+integer G4=392
+integer Ab4=415
+integer A4=440
+integer Bb4=466
+integer B4=494
+integer C5=523
+integer Db5=554
+integer D5=587
+integer Eb5=622
+integer E5=659
+integer F5=698
+integer Gb5=740
+integer G5=784
+integer Ab5=831
+integer A5=880
+integer Bb5=932
+integer B5=988
+integer C6=1047
+integer Db6=1109
+integer D6=1175
+integer Eb6=1245
+integer E6=1319
+integer F6=1397
+integer Gb6=1480
+integer G6=1568
+integer Ab6=1661
+integer A6=1760
+integer Bb6=1865
+integer B6=1976
+integer C7=2093
+//create duratation variables W = Whole Note h= half note, q=qu. dq=dotted quarter
+integer w=1600// Whole Note
+integer dh=1200// Dotted Half Note
+integer h=800// Half Note
+integer dq=600// Dotted Quarter Note
+integer q=400// Quarter Note
+integer de=300// Dotted Eight Note
+integer e=200 // Eigth note
+integer s=100 // 16th Note
+
+// Set up the starting varibles and motors
+sound:SetVolume(100) 
+integer duration=200 
+motor:SetSpeed("A",6)
+motor:SetSpeed("B",10)
+motor:SetSpeed("C",10)
+motor:RotateForward("A")
+motor:RotateForward("B")
+motor:RotateForward("C")
+utility:DelayMilliseconds(100) 
+// just to get the robot moving!
+//repeat until ultrasonicSensor:GetDistance() < 0.5 //use this to stop the robot when it gets to a object
+repeat until touchSensor:IsPressed()// or use this one to stop by pressing the touch sensor.
+
+// make an array and then get the color data form the color sensor and make the numbers into an integer 255 times larger than the 0.0 - 1.0 range
+//This simulates the standard RGB 255,255,255 color palete often seen in color mixing software.
+Array<number> redGreenBlueLevels = colorSensor:GetRedGreenBlueLevels()
+number red = redGreenBlueLevels:Get(0)*255 
+number green = redGreenBlueLevels:Get(1)*255
+number blue = redGreenBlueLevels:Get(2)*255
+red = math:Round(red)
+green = math:Round(green)
+blue = math:Round(blue)
+integer ired =  cast(integer, red)
+integer igreen = cast(integer,green)
+integer iblue = cast(integer,blue)
+// put the current color numbers on the screen
+screen:OutputLarge("Red: " + ired, 1)
+screen:OutputLarge("Green: " + igreen, 3)
+screen:OutputLarge("Blue: " + iblue, 5)
+
+motor:SetSpeed("A",6)
+// map the RGB intergers to a pitch and set of range of +/- 2 to ajust for small variation
+//these are elseif's to evaulate for 8 colors
+if ired>59 and ired<66 and igreen>69 and igreen<80 and iblue>39 and iblue<11// WHITE REST
+utility:DelayMilliseconds(duration)
+elseif ired>24 and ired<36 and igreen>20 and igreen<29 and iblue>8 and iblue<18// wood rest
+utility:DelayMilliseconds(duration)
+elseif ired>38 and ired<60 and igreen>7 and igreen<19 and iblue>3 and iblue<11// RED  C5
+    sound:PlayTone(C5,duration)
+elseif ired>49 and ired<77 and igreen>44 and igreen<77 and iblue>18 and iblue<28// GOLD  D5
+    sound:PlayTone(D5,duration)
+elseif ired>5 and ired<11 and igreen>18 and igreen<29 and iblue>18 and iblue<28// LTBLUE  E5
+    sound:PlayTone(E5,duration)
+elseif ired>40 and ired<57 and igreen>22 and igreen<34 and iblue>3 and iblue<9// Yellow  F5
+    sound:PlayTone(F5,duration)
+elseif ired>3 and ired<10 and igreen>7 and igreen<17 and iblue>5 and iblue<14// BLUE  G5
+    sound:PlayTone(G5,duration)
+elseif ired>39 and ired<59 and igreen>50 and igreen<86 and iblue>30 and iblue<45// Silver  A5
+    sound:PlayTone(A5,duration)
+elseif ired>31 and ired<44 and igreen>14 and igreen<26 and iblue>8 and iblue<18// PINK  B5
+    sound:PlayTone(B5,duration)
+elseif ired>4 and ired<14 and igreen>17 and igreen<34 and iblue>3 and iblue<10// GREEN  C6
+    sound:PlayTone(C6,duration)
+elseif ired>3 and ired<10 and igreen>7 and igreen<16 and iblue>2 and iblue<8// BLACK  STOP
+motor:Stop("B") 
+motor:Stop("C") 
+end
+utility:DelayMilliseconds(duration)
+end
