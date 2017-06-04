@@ -124,22 +124,22 @@ motor:SetSpeed("A",6)
 // map the RGB intergers to a pitch and set of range of +/- 2 to ajust for small variation
 //these are elseif's to evaulate for 9 colors and track color.
 if ired>42 and ired<55 and igreen>49 and igreen<61 and iblue>32 and iblue<46// WHITE REST
-utility:DelayMilliseconds(duration)
+utility:DelayMilliseconds(duration/2)
 elseif ired>24 and ired<36 and igreen>20 and igreen<29 and iblue>8 and iblue<18// wood rest
-utility:DelayMilliseconds(duration)
-elseif ired>39 and ired<51 and igreen>9 and igreen<18 and iblue>1 and iblue<11// RED  C5
+utility:DelayMilliseconds(duration/2)
+elseif ired>42 and ired<48 and igreen>12 and igreen<18 and iblue>2 and iblue<9// RED  C5
     sound:PlayTone(C5,duration)
-elseif ired>54 and ired<77 and igreen>62 and igreen<78 and iblue>13 and iblue<27// GOLD  D5
+elseif ired>59 and ired<74 and igreen>58 and igreen<78 and iblue>17 and iblue<27// GOLD  D5
     sound:PlayTone(D5,duration)
-elseif ired>44 and ired<59 and igreen>7 and igreen<21 and iblue>5 and iblue<13// ORANGE  E5
+elseif ired>57 and ired<66 and igreen>22 and igreen<26 and iblue>6 and iblue<10// ORANGE  E5
     sound:PlayTone(E5,duration)
-elseif ired>48 and ired<66 and igreen>22 and igreen<36 and iblue>2 and iblue<10// Yellow  F5
+elseif ired>55 and ired<59 and igreen>29 and igreen<35 and iblue>4 and iblue<9// Yellow  F5
     sound:PlayTone(F5,duration)
 elseif ired>2 and ired<10 and igreen>10 and igreen<17 and iblue>2 and iblue<7// BLACK  G5
     sound:PlayTone(G5,duration)
 elseif ired>33 and ired<39 and igreen>53 and igreen<63 and iblue>22 and iblue<34// Silver  A5
     sound:PlayTone(A5,duration)
-elseif ired>38 and ired<54 and igreen>11 and igreen<21 and iblue>5 and iblue<12// PINK  B5
+elseif ired>66 and ired<71 and igreen>26 and igreen<30 and iblue>16 and iblue<19// PINK  B5
     sound:PlayTone(B5,duration)
 elseif ired>3 and ired<11 and igreen>21 and igreen<31 and iblue>1 and iblue<10// GREEN  C6
     sound:PlayTone(C6,duration)
