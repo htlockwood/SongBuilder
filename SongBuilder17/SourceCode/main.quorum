@@ -1,4 +1,5 @@
-//Song Builder 2017 using enaimle painted bricks 
+//Song Builder 2017 using enamile painted bricks 
+//New reversible robot 6/6/2017
 use Libraries.Robots.Lego.Motor
 use Libraries.Robots.Lego.ColorSensor
 use Libraries.Robots.Lego.Utility
@@ -90,6 +91,7 @@ integer s=100 // 16th Note
 
 // Set up the starting varibles and motors
 sound:SetVolume(100) 
+integer directiontoggle=0
 integer duration=400 
 motor:SetSpeed("A",6)
 motor:SetSpeed("B",10)
@@ -143,9 +145,18 @@ elseif ired>66 and ired<71 and igreen>26 and igreen<30 and iblue>16 and iblue<19
     sound:PlayTone(B5,duration)
 elseif ired>3 and ired<11 and igreen>21 and igreen<31 and iblue>1 and iblue<10// GREEN  C6
     sound:PlayTone(C6,duration)
-elseif ired>1 and ired<9 and igreen>11 and igreen<23 and iblue>10 and iblue<18// Blue  STOP
-motor:Stop("B") 
-motor:Stop("C") 
+elseif ired>1 and ired<9 and igreen>11 and igreen<23 and iblue>10 and iblue<18 and directiontoggle = 0// Blue change direction
+motor:RotateBackward("A")
+motor:RotateBackward("B")
+motor:RotateBackward("C")
+directiontoggle=1
+elseif ired>1 and ired<9 and igreen>11 and igreen<23 and iblue>10 and iblue<18 and directiontoggle = 1// Blue move farward
+motor:RotateForward("A")
+motor:RotateForward("B")
+motor:RotateForward("C")
+directiontoggle=0 
+//motor:Stop("B") 
+//motor:Stop("C") 
 end
 utility:DelayMilliseconds(duration)
 end //this does not end the program, it is still repeating until the touch sensor is pressed
