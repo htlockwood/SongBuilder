@@ -21,12 +21,12 @@ Sound sound
 Button button
 TouchSensor touchSensor
 UltrasonicSensor ultrasonicSensor
-GyroSensor gyroSensor
+//GyroSensor gyroSensor
 Math math
 //set sensor ports 
 colorSensor:SetPort(1)
 ultrasonicSensor:SetPort(2) //not used commented out below
-gyroSensor:SetPort(3) //not used
+//gyroSensor:SetPort(3) //not used
 touchSensor:SetPort(4)
 
 //Create varibles for the music notation
