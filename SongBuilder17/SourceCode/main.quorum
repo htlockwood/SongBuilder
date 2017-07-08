@@ -145,13 +145,13 @@ elseif ired>70 and ired<88 and igreen>25 and igreen<35 and iblue>15 and iblue<25
     sound:PlayTone(B5,duration)
 elseif ired>5 and ired<15 and igreen>25 and igreen<35 and iblue>5 and iblue<15// GREEN  C6
     sound:PlayTone(C6,duration)
-elseif ired>5 and ired<15 and igreen>15 and igreen<15 and iblue>15 and iblue<25 and directiontoggle = 0// Blue change direction
+elseif ired>5 and ired<15 and igreen>10 and igreen<20 and iblue>14 and iblue<25 and directiontoggle = 0// Blue change direction
 motor:RotateBackward("A")
 motor:RotateBackward("B")
 motor:RotateBackward("C")
 directiontoggle=1
-utility:DelayMilliseconds(400)
-elseif ired>1 and ired<9 and igreen>11 and igreen<23 and iblue>10 and iblue<18 and directiontoggle = 1// Blue move farward
+utility:DelayMilliseconds(600)
+elseif ired>5 and ired<15 and igreen>10 and igreen<20 and iblue>14 and iblue<25 and directiontoggle = 1// Blue move farward
 motor:RotateForward("A")
 motor:RotateForward("B")
 motor:RotateForward("C")
