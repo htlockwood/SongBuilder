@@ -92,10 +92,10 @@ integer s=100 // 16th Note
 // Set up the starting varibles and motors
 sound:SetVolume(100) 
 integer directiontoggle=0
-integer duration=50
-motor:SetSpeed("A",6)
-motor:SetSpeed("B",6)
-motor:SetSpeed("C",6)
+integer duration=100
+motor:SetSpeed("A",25)
+motor:SetSpeed("B",25)
+motor:SetSpeed("C",25)
 motor:RotateForward("A")
 motor:RotateForward("B")
 motor:RotateForward("C")
